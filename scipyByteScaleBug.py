@@ -70,7 +70,7 @@ def bytescale(data, cmin: int | None = None, cmax: int | None = None, high: int 
     bytedata[bytedata > high] = high
     bytedata[bytedata < low] = low
 
-    return np.cast[np.uint8](bytedata.round())
+    return bytedata.round().astype(np.uint8)
 
 
 if __name__ == "__main__":

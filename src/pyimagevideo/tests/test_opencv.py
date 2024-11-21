@@ -20,7 +20,3 @@ def test_cv2codec_read():
     cv2.imshow(f"OpenCV {cv2.__version__} {fn.name}", img)
     cv2.waitKey(delay=1000)
     cv2.destroyAllWindows()
-
-
-if __name__ == "__main__":
-    pytest.main(["-x", __file__])

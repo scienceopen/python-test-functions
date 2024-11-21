@@ -1,13 +1,15 @@
 """
 These functions are for https://github.com/scivision/histfeas output plot collection
 """
+
+from __future__ import annotations
 import logging
 from pathlib import Path
 import re
 from typing import Generator
 
 #
-from . import png2tiff
+from .convert import png2tiff
 
 # from visvis.vvmovie.images2gif import writeGif #garbage doesn't work correctly, bad GIFs
 # imageio/tifffile is 20x faster than freeimage

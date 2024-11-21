@@ -1,5 +1,39 @@
 [build-system]
-requires = ["setuptools", "wheel"]
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyimagevideo"
+version = "1.0.1"
+description = "Demos of OpenCV, read/write videos, etc."
+readme = "README.md"
+requires-python = ">=3.9"
+keywords = ["video", "audio", "media", "ffmpeg"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Education",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Topic :: Multimedia :: Graphics :: 3D Rendering",
+    "Topic :: Multimedia :: Graphics :: Presentation",
+    "Topic :: Multimedia :: Graphics :: Viewers",
+    "Topic :: Multimedia :: Sound/Audio :: Players",
+    "Topic :: Scientific/Engineering :: Visualization",
+    "Topic :: Utilities"
+]
+dependencies = ["numpy", "imageio", "scikit-image", "matplotlib"]
+
+[project.optional-dependencies]
+tests = ["pytest", "flake8", "mypy"]
+io = ["h5py", "scipy", "morecvutils"]
+
 
 [tool.black]
 line-length = 132
+
+[tool.mypy]
+files = ["."]
+ignore_missing_imports = true

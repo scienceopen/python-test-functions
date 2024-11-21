@@ -6,6 +6,7 @@ import imageio
 
 #
 import pyimagevideo as piv
+import pyimagevideo.gen_image as pimg
 
 R = Path(__file__).parents[1]
 
@@ -17,7 +18,7 @@ def test_tiff_multipage_rw():
     with tempfile.TemporaryDirectory() as d:
         d = Path(d).expanduser()
 
-        piv.genimgseries(d)
+        pimg.genimgseries(d)
 
         ofn = d / "mp.tif"
         piv.png2tiff(ofn, "[0-9].png")

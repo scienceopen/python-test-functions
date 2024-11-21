@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from pyimagevideo import png2tiff
+from pyimagevideo.convert import png2tiff
 
 if __name__ == "__main__":
     from argparse import ArgumentParser

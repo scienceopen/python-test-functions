@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """
 Note:
 
@@ -9,7 +9,7 @@ Note:
 import subprocess
 import numpy as np
 import tempfile
-import imageio
+import imageio.v3 as iio
 import shutil
 
 EXE = shutil.which("ffplay")  # path to your video player
@@ -17,7 +17,7 @@ if not EXE:
     raise FileNotFoundError("FFplay was not found")
 
 usecolor = False
-nframe = 30
+nframe = 90
 xpix = ypix = 256
 
 ext = ".avi"
@@ -28,7 +28,8 @@ shape = (nframe, ypix, xpix, 3) if usecolor else (nframe, ypix, xpix)
 
 vid = (np.random.random(shape) * 255).astype(np.uint8)
 # %% write lossless AVI
-fn = tempfile.NamedTemporaryFile(suffix=ext, delete=False).name
-imageio.mimwrite(fn, vid)
-# %% check video
-subprocess.check_call([EXE, "-autoexit", fn])
+with tempfile.NamedTemporaryFile(suffix=ext) as f:
+    fn = f.name
+    iio.imwrite(fn, vid)
+    # %% check video
+    subprocess.check_call([EXE, fn])

@@ -19,12 +19,12 @@ It's just a very simple comparison, showing OpenCV's huge FPS advantage
 NOTE: we use pause(1e-3) as pause(1e-6) yields the same FPS, but doesn't give visible updates. A race condition in Matplotlib?
 
 """
+from __future__ import annotations
 import numpy as np
 from numpy.random import rand
 import matplotlib
 from matplotlib.pyplot import figure, draw, pause, close
 from time import time
-from typing import Tuple
 
 try:
     import cv2
@@ -34,14 +34,14 @@ except ImportError:
 Nfps = 100
 
 
-def randomimg(xy: Tuple[int, int]) -> np.ndarray:
+def randomimg(xy: tuple[int, int]):
     """
     generate two image frames to toggle between
     """
     return (rand(2, xy[0], xy[1]) * 255).astype(np.uint8)
 
 
-def fpsmatplotlib_imshow(dat: np.ndarray):
+def fpsmatplotlib_imshow(dat):
     fg = figure()
     ax = fg.gca()
     h = ax.imshow(dat[0, ...])
@@ -54,7 +54,7 @@ def fpsmatplotlib_imshow(dat: np.ndarray):
     return Nfps / (time() - tic)
 
 
-def fpsmatplotlib_pcolor(dat: np.ndarray):
+def fpsmatplotlib_pcolor(dat):
     fg = figure()
     ax = fg.gca()
     h = ax.pcolormesh(dat[0, ...])
@@ -68,7 +68,7 @@ def fpsmatplotlib_pcolor(dat: np.ndarray):
     return Nfps / (time() - tic)
 
 
-def fpsopencv(dat: np.ndarray):
+def fpsopencv(dat):
     tic = time()
     for i in range(Nfps):
         cv2.imshow("fpstest", dat[i % 2, ...])
